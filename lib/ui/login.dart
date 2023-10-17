@@ -4,7 +4,7 @@ import 'package:farmer_app/ui/signup.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -12,6 +12,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool isChecked = false;
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +58,19 @@ class _LoginState extends State<Login> {
                             Container(
                               padding: const EdgeInsets.only(left: 10),
                               width: 300,
-                              child: const TextField(
-                                cursorColor: Colors.grey,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black54,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Username',
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: username,
+                                  cursorColor: Colors.grey,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black54,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Username',
+                                  ),
                                 ),
                               ),
                             ),
@@ -72,9 +79,9 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     Positioned(
-                      top: 90,
+                      top: 100,
                       left: 60,
-                      bottom: -100,
+                      bottom: -90,
                       child: SizedBox(
                         child: Row(
                           children: [
@@ -85,16 +92,20 @@ class _LoginState extends State<Login> {
                             Container(
                               padding: const EdgeInsets.only(left: 10),
                               width: 300,
-                              child: const TextField(
-                                obscureText: true,
-                                cursorColor: Colors.grey,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.black54,
-                                ),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Password',
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: password,
+                                  cursorColor: Colors.grey,
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black54,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Password',
+                                  ),
+                                  obscureText: true,
                                 ),
                               ),
                             ),
@@ -159,36 +170,69 @@ class _LoginState extends State<Login> {
                       left: 15,
                       right: 15,
                       child: SizedBox(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => const Home()));
-                          },
-                          child: Container(
-                              height: 50,
-                              // padding: const EdgeInsets.all(40.0),
-                              decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [
-                                      Color(0xFF0CC0DF),
-                                      Color(0xFFFFDE59),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    stops: [0.0, 1.0],
-                                    tileMode: TileMode.clamp),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
-                              ),
-                              child: const Center(
-                                child: Text('Login',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                    )),
-                              )),
+                        child: Form(
+                          key: formKey,
+                          child: GestureDetector(
+                            onTap: () {
+                              String tUser = 'anton';
+                              String tPass = '123';
+                              if (formKey.currentState!.validate()) {
+                                if (username.text == tUser &&
+                                    password.text == tPass) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Home(
+                                          username: username.text,
+                                          password: password.text),
+                                    ),
+                                  );
+                                }
+                                if (username.text.isEmpty ||
+                                    password.text.isEmpty) {
+                                  setState(() {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                'Username and Password cannot be empty')));
+                                  });
+                                } else {
+                                  // Invalid username or password
+                                  setState(() {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                            'Invalid username or password'),
+                                      ),
+                                    );
+                                  });
+                                }
+                              }
+                            },
+                            child: Container(
+                                height: 50,
+                                // padding: const EdgeInsets.all(40.0),
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFF0CC0DF),
+                                        Color(0xFFFFDE59),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      stops: [0.0, 1.0],
+                                      tileMode: TileMode.clamp),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(30)),
+                                ),
+                                child: const Center(
+                                  child: Text('Login',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                )),
+                          ),
                         ),
                       ),
                     ),
