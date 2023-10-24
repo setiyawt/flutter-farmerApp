@@ -1,3 +1,4 @@
+import 'package:farmer_app/ui/kalkulator.dart';
 import 'package:flutter/material.dart';
 import 'package:farmer_app/ui/login.dart';
 
@@ -118,12 +119,22 @@ class _HomeState extends State<Home> {
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(children: [
-                Text(
-                  'Your Greenhouse',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFFFDE59),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Kalkulator(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Calculator',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFFFDE59),
+                    ),
                   ),
                 ),
                 SizedBox(width: 115),
