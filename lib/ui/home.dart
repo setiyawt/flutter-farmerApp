@@ -1,5 +1,9 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:farmer_app/ui/SensorManage.dart';
+import 'package:farmer_app/ui/article.dart';
 import 'package:farmer_app/ui/kalkulator.dart';
 import 'package:farmer_app/ui/navigation.dart';
+import 'package:farmer_app/ui/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:farmer_app/ui/login.dart';
 
@@ -14,50 +18,31 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final items = const [
+    Icon(Icons.home, size: 25),
+    Icon(Icons.settings_applications, size: 25),
+    Icon(Icons.article, size: 25),
+    Icon(Icons.people, size: 25),
+  ];
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF0CC0DF),
-                  Color(0xFFFFDE59),
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.logout,
-              ),
-              onPressed: () {
-                print('Custom Back Button Pressed');
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => const Login()),
-                );
-              },
-            ),
-          ],
+        bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Colors.blueAccent,
+          items: items,
+          index: index,
+          onTap: (selectedIndex) {
+            setState(() {
+              index = selectedIndex;
+            });
+          },
+          animationDuration: const Duration(milliseconds: 300),
         ),
-        body:
-            // height: MediaQuery.of(context).size.height,
-            // width: MediaQuery.of(context).size.width,
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: AssetImage("assets/home.png"),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
-            ListView(
+        body: ListView(
           children: <Widget>[
             Padding(
               padding: EdgeInsets.all(10.0),
@@ -88,6 +73,7 @@ class _HomeState extends State<Home> {
                 )
               ]),
             ),
+
             Padding(
               padding: EdgeInsets.fromLTRB(12, 10, 12, 4),
               child: Container(
@@ -199,9 +185,33 @@ class _HomeState extends State<Home> {
                 color: Color.fromARGB(255, 4, 190, 138),
               ),
             ),
+            Container(
+              child: getSelectedWidget(
+                index: index,
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Widget getSelectedWidget({required int index}) {
+    Widget widget;
+    switch (index) {
+      case 1:
+        widget = const Sensor();
+        break;
+      case 2:
+        widget = const Article();
+        break;
+      case 3:
+        widget = const Profile();
+        break;
+      default:
+        widget = const Sensor();
+        break;
+    }
+    return widget;
   }
 }
