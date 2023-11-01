@@ -1,3 +1,4 @@
+import 'package:farmer_app/ui/navigation.dart';
 import 'package:farmer_app/ui/login.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Login',
+      title: 'MyApp',
       home: Login(),
       debugShowCheckedModeBanner: false,
     );
