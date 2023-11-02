@@ -1,6 +1,5 @@
 import 'package:farmer_app/ui/forgotpass.dart';
 import 'package:farmer_app/ui/home.dart';
-import 'package:farmer_app/ui/navigation.dart';
 import 'package:farmer_app/ui/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -35,11 +34,11 @@ class _LoginState extends State<Login> {
                   alignment: Alignment.center,
                   children: [
                     Positioned(
-                      top: 30,
+                      top: 10,
                       child: Text(
                         'Welcome Back',
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -177,37 +176,37 @@ class _LoginState extends State<Login> {
                             onTap: () {
                               String tUser = 'anton';
                               String tPass = '123';
-                              if (formKey.currentState!.validate()) {
-                                if (username.text == tUser &&
-                                    password.text == tPass) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Home(
-                                          username: username.text,
-                                          password: password.text),
+                              if (username.text.isEmpty ||
+                                  password.text.isEmpty) {
+                                setState(() {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                          'Username and Password cannot be empty'),
                                     ),
                                   );
-                                }
-                                if (username.text.isEmpty ||
-                                    password.text.isEmpty) {
-                                  setState(() {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content: Text(
-                                                'Username and Password cannot be empty')));
-                                  });
-                                } else {
-                                  // Invalid username or password
-                                  setState(() {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                            'Invalid username or password'),
-                                      ),
-                                    );
-                                  });
-                                }
+                                });
+                              } else if (username.text == tUser &&
+                                  password.text == tPass) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(
+                                      username: username.text,
+                                      password: password.text,
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                // Invalid username or password
+                                setState(() {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content:
+                                          Text('Invalid username or password'),
+                                    ),
+                                  );
+                                });
                               }
                             },
                             child: Container(
