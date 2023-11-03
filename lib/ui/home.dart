@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
       ListView(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
             child: Row(children: [
               Text(
                 'Hello, ${widget.username}',
@@ -61,9 +61,9 @@ class _HomeState extends State<Home> {
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(12, 10, 12, 4),
+            padding: EdgeInsets.only(top: 10, bottom: 5, left: 20, right: 20),
             child: Container(
-              height: 50,
+              height: 60,
               child: TextField(
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
@@ -85,12 +85,18 @@ class _HomeState extends State<Home> {
                     color: Color.fromARGB(255, 199, 199, 198),
                   ),
                 ),
+                onTap: () {
+                  showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(),
+                  );
+                },
                 style: TextStyle(color: Color.fromARGB(255, 199, 199, 198)),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
             child: Row(children: [
               TextButton(
                 onPressed: () {
@@ -110,7 +116,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              SizedBox(width: 115),
+              SizedBox(width: 140),
               Text(
                 '12 Places',
                 style: TextStyle(
@@ -192,5 +198,69 @@ class _HomeState extends State<Home> {
         animationDuration: const Duration(milliseconds: 300),
       ),
     );
+  }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> showSearch = [
+    'Lectuce',
+    'Carrot',
+  ];
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var fruit in showSearch) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(
+            title: Text(result),
+          );
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var fruit in showSearch) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(
+            title: Text(result),
+          );
+        });
   }
 }

@@ -33,6 +33,7 @@ dependencies:
   flutter_native_splash: ^2.3.5
   flutter:
     sdk: flutter
+  searchfield: ^0.8.7
 
 flutter_native_splash:
   color: "#FFFFFF"
