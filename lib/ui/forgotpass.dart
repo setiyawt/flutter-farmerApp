@@ -75,8 +75,27 @@ class _ForgotDetailState extends State<ForgotDetail> {
                     child: SizedBox(
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => const Login()));
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('CONFIRM'),
+                                  content: Text('Check your email!'),
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => const Login()));
+                                      },
+                                      child: Text("OK"),
+                                    )
+                                  ],
+                                );
+                              });
+                          // Navigator.pushReplacement(context,
+                          //     MaterialPageRoute(builder: (_) => const Login()));
                         },
                         child: Container(
                             height: 50,
