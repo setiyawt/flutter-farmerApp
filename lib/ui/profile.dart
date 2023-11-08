@@ -17,20 +17,9 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
           title: Text("Profile"),
           centerTitle: true,
-          backgroundColor: const Color.fromARGB(255, 4, 190, 138),
-          leading: BackButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Home(
-                    username: 'anton',
-                    password: '123',
-                  ),
-                ),
-              );
-            },
-          )),
+          backgroundColor: const Color(0xFF0CC0DF),
+          elevation: 0,
+          automaticallyImplyLeading: false),
       body: Container(
         child: Column(children: [
           Padding(
@@ -40,7 +29,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 const Icon(
                   Icons.person_2_rounded,
-                  color: Colors.black,
+                  color: Color(0xFF2D3259),
                 ),
                 SizedBox(width: 10),
                 TextButton(
@@ -55,7 +44,7 @@ class _ProfileState extends State<Profile> {
                       'My Profile',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Color(0xFF2D3259),
                         fontWeight: FontWeight.w500,
                       ),
                     ))
@@ -72,7 +61,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 const Icon(
                   Icons.logout_sharp,
-                  color: Colors.black,
+                  color: Color(0xFF2D3259),
                 ),
                 SizedBox(width: 10),
                 TextButton(
@@ -86,7 +75,7 @@ class _ProfileState extends State<Profile> {
                       'Log out',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Colors.black,
+                        color: Color(0xFF2D3259),
                         fontWeight: FontWeight.w500,
                       ),
                     ))

@@ -30,9 +30,12 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
-  flutter_native_splash: ^2.3.5
+  dropdown_search: ^5.0.6
+  fl_chart: ^0.64.0
   flutter:
     sdk: flutter
+  flutter_3d_choice_chip: ^0.1.4
+  flutter_native_splash: ^2.3.5
   searchfield: ^0.8.7
 
 flutter_native_splash:
@@ -43,11 +46,6 @@ flutter_native_splash:
   web: true
 
 dev_dependencies:
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter

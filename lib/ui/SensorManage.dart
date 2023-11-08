@@ -1,78 +1,249 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
-class Sensor extends StatefulWidget {
-  const Sensor({super.key});
+class GrafikTab extends StatefulWidget {
+  const GrafikTab({super.key});
 
   @override
-  State<Sensor> createState() => _SensorState();
+  State<GrafikTab> createState() => GrafikTabState();
 }
 
-class _SensorState extends State<Sensor> {
+class GrafikTabState extends State<GrafikTab> {
+  List<Color> gradientColors = [Color(0xFF0CC0DF), Color(0xFFFFDE59)];
+  int count = 0;
+  late List<FlSpot> listData;
+  TextEditingController inputController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    listData = [
+      const FlSpot(0, 20),
+      const FlSpot(1, 34),
+      const FlSpot(2, 56),
+      const FlSpot(3, 26),
+      const FlSpot(4, 67),
+      const FlSpot(5, 46),
+      const FlSpot(6, 69),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/home.png"),
-              fit: BoxFit.cover,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const Text(
+          'SENSOR MANAGE',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.normal,
+            color: Color(0xFF0CC0DF),
+          ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        AspectRatio(
+          aspectRatio: 1.70,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              right: 18,
+              left: 12,
+              top: 24,
+              bottom: 12,
+            ),
+            child: LineChart(
+              mainData(),
             ),
           ),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Stack(
-                children: [
-                  Positioned(
-                    bottom: 250,
-                    left: 15,
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2D3259),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 180,
-                    left: 15,
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.mail_outlined,
-                            color: Colors.grey,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(left: 10),
-                            width: 300,
-                            child: const TextField(
-                              cursorColor: Colors.grey,
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.black54,
-                              ),
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'example@gmail.com',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: TextField(
+            controller: inputController,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              label: Text('Data Input'),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white54),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(16),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xFF2D3259)),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(16),
+                ),
               ),
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SizedBox(
+            height: 50,
+            width: double.maxFinite,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  textStyle: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                  backgroundColor: const Color(0xFF0CC0DF),
+                  foregroundColor: Colors.white),
+              onPressed: () {
+                double lastData = double.parse(listData.length.toString());
+                double valueInput =
+                    double.parse(inputController.text.toString());
+
+                try {
+                  listData.insert(
+                      lastData.toInt(),
+                      FlSpot(double.parse(listData.length.toString()),
+                          valueInput));
+                  setState(() {});
+                } catch (e) {
+                  print('$e');
+                }
+              },
+              child: const Text('Input'),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget bottomTitleWidgets(double value, TitleMeta meta) {
+    const style = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    );
+    Widget text;
+    switch (value.toInt()) {
+      case 1:
+        text = const Text('SEP', style: style);
+        break;
+      case 4:
+        text = const Text('OCT', style: style);
+        break;
+      case 7:
+        text = const Text('NOV', style: style);
+        break;
+      case 10:
+        text = const Text('Desember', style: style);
+        break;
+      default:
+        text = const Text('', style: style);
+        break;
+    }
+
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: text,
+    );
+  }
+
+  Widget leftTitleWidgets(double value, TitleMeta meta) {
+    const style = TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 15,
+    );
+    String text;
+    switch (value.toInt()) {
+      case 25:
+        text = '25%';
+        break;
+      case 50:
+        text = '55%';
+        break;
+      case 75:
+        text = '75%';
+        break;
+      default:
+        return Container();
+    }
+
+    return Text(text, style: style, textAlign: TextAlign.left);
+  }
+
+  LineChartData mainData() {
+    return LineChartData(
+      gridData: FlGridData(
+        show: true,
+        drawVerticalLine: true,
+        horizontalInterval: 10,
+        verticalInterval: 1,
+        getDrawingHorizontalLine: (value) {
+          return const FlLine(
+            color: Color(0xFFFFDE59),
+            strokeWidth: 1,
+          );
+        },
+        getDrawingVerticalLine: (value) {
+          return const FlLine(
+            color: Color(0xFF0CC0DF),
+            strokeWidth: 1,
+          );
+        },
       ),
+      titlesData: FlTitlesData(
+        show: true,
+        rightTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        topTitles: const AxisTitles(
+          sideTitles: SideTitles(showTitles: false),
+        ),
+        bottomTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            reservedSize: 30,
+            interval: 1,
+            getTitlesWidget: bottomTitleWidgets,
+          ),
+        ),
+        leftTitles: AxisTitles(
+          sideTitles: SideTitles(
+            showTitles: true,
+            interval: 1,
+            getTitlesWidget: leftTitleWidgets,
+            reservedSize: 42,
+          ),
+        ),
+      ),
+      borderData: FlBorderData(
+        show: true,
+        border: Border.all(color: Color.fromARGB(255, 159, 148, 2)),
+      ),
+      minX: 0,
+      maxX: listData.length.toDouble() - 1,
+      minY: 0,
+      maxY: 100,
+      lineBarsData: [
+        LineChartBarData(
+          spots: listData,
+          isCurved: true,
+          gradient: LinearGradient(
+            colors: gradientColors,
+          ),
+          barWidth: 5,
+          isStrokeCapRound: true,
+          dotData: const FlDotData(
+            show: false,
+          ),
+          belowBarData: BarAreaData(
+            show: true,
+            gradient: LinearGradient(
+              colors: gradientColors
+                  .map((color) => color.withOpacity(0.3))
+                  .toList(),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

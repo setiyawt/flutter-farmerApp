@@ -21,16 +21,19 @@ class _KalkulatorState extends State<Kalkulator> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Calculator"),
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(12, 192, 223, 1),
+        elevation: 0,
       ),
       body: ListView(
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
+                const EdgeInsets.only(top: 30, bottom: 30, left: 20, right: 20),
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue[100]),
+                  color: Color.fromARGB(255, 177, 234, 244)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -40,16 +43,13 @@ class _KalkulatorState extends State<Kalkulator> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
           Padding(
             padding:
-                const EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
+                const EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 20),
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue[100]),
+                  color: Color.fromARGB(255, 177, 234, 244)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -60,14 +60,15 @@ class _KalkulatorState extends State<Kalkulator> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 30,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:
+                const EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue[100]),
+                  color: Color.fromARGB(255, 177, 234, 244)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -79,7 +80,7 @@ class _KalkulatorState extends State<Kalkulator> {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 20,
           ),
           Container(
             height: MediaQuery.of(context).size.height / 2,
@@ -94,10 +95,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(12, 192, 223, 1),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 20, right: 20),
                     child: Text(
                       "Tambah",
                       style: TextStyle(color: Colors.white),
@@ -118,10 +120,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(12, 192, 223, 1),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 20, right: 20),
                     child: Text(
                       "Kurang",
                       style: TextStyle(color: Colors.white),
@@ -142,10 +145,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(12, 192, 223, 1),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 30, right: 30),
                     child: Text(
                       "Kali",
                       style: TextStyle(color: Colors.white),
@@ -164,10 +168,11 @@ class _KalkulatorState extends State<Kalkulator> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(12, 192, 223, 1),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 30, right: 30),
                     child: Text(
                       "Bagi",
                       style: TextStyle(color: Colors.white),

@@ -38,8 +38,8 @@ class _RegistrationState extends State<Registration> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height, // Tinggi layar
-            width: MediaQuery.of(context).size.width, // Lebar layar
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/register.png"),
