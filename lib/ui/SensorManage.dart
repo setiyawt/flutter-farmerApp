@@ -30,89 +30,97 @@ class GrafikTabState extends State<GrafikTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        const Text(
-          'SENSOR MANAGE',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.normal,
-            color: Color(0xFF0CC0DF),
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/bg2.png"),
+          fit: BoxFit.cover,
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              right: 18,
-              left: 12,
-              top: 24,
-              bottom: 12,
-            ),
-            child: LineChart(
-              mainData(),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Text(
+            'SENSOR MANAGE',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.normal,
+              color: Color.fromARGB(255, 4, 106, 124),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: TextField(
-            controller: inputController,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              label: Text('Data Input'),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white54),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
+          const SizedBox(
+            height: 20,
+          ),
+          AspectRatio(
+            aspectRatio: 1.70,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                right: 18,
+                left: 12,
+                top: 24,
+                bottom: 12,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFF2D3259)),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
+              child: LineChart(
+                mainData(),
               ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SizedBox(
-            height: 50,
-            width: double.maxFinite,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  textStyle: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                  backgroundColor: const Color(0xFF0CC0DF),
-                  foregroundColor: Colors.white),
-              onPressed: () {
-                double lastData = double.parse(listData.length.toString());
-                double valueInput =
-                    double.parse(inputController.text.toString());
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextField(
+              controller: inputController,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                label: Text('Data Input'),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white54),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(16),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF2D3259)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(16),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SizedBox(
+              height: 50,
+              width: double.maxFinite,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 12),
+                    textStyle: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                    backgroundColor: const Color(0xFF0CC0DF),
+                    foregroundColor: Colors.white),
+                onPressed: () {
+                  double lastData = double.parse(listData.length.toString());
+                  double valueInput =
+                      double.parse(inputController.text.toString());
 
-                try {
-                  listData.insert(
-                      lastData.toInt(),
-                      FlSpot(double.parse(listData.length.toString()),
-                          valueInput));
-                  setState(() {});
-                } catch (e) {
-                  print('$e');
-                }
-              },
-              child: const Text('Input'),
+                  try {
+                    listData.insert(
+                        lastData.toInt(),
+                        FlSpot(double.parse(listData.length.toString()),
+                            valueInput));
+                    setState(() {});
+                  } catch (e) {
+                    print('$e');
+                  }
+                },
+                child: const Text('Input'),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

@@ -34,6 +34,20 @@ class _ArticleState extends State<Article> {
     }
   }
 
+  String getBmiCategory(double bmi) {
+    if (_bmi == 0.0) {
+      return "Unknown";
+    } else if (_bmi < 18.5) {
+      return "Underweight";
+    } else if (_bmi >= 18.5 && _bmi < 24.9) {
+      return "Normal";
+    } else if (_bmi >= 25.0 && _bmi < 29.9) {
+      return "Overweight";
+    } else {
+      return "Obese";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,91 +57,99 @@ class _ArticleState extends State<Article> {
           backgroundColor: const Color(0xFF0CC0DF),
           elevation: 0,
           automaticallyImplyLeading: false),
-      body: Padding(
-        padding: EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ChoiceChip3D(
-                  border: Border.all(color: Colors.grey),
-                  style: _gender == 1 ? selectedStyle : unselectedStyle,
-                  onSelected: () {
-                    setState(() {
-                      _gender = 1;
-                    });
-                    calculateBMI(_gender, _height, _weight);
-                  },
-                  onUnSelected: () {},
-                  selected: _gender == 1,
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/man.png",
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      const Text("Male")
-                    ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 0, bottom: 0, left: 20, right: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ChoiceChip3D(
+                    border: Border.all(color: Colors.grey),
+                    style: _gender == 1 ? selectedStyle : unselectedStyle,
+                    onSelected: () {
+                      setState(() {
+                        _gender = 1;
+                      });
+                      calculateBMI(_gender, _height, _weight);
+                    },
+                    onUnSelected: () {},
+                    selected: _gender == 1,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/man.png",
+                          width: 50,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text("Male")
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ChoiceChip3D(
-                  border: Border.all(color: Colors.grey),
-                  style: _gender == 2 ? selectedStyle : unselectedStyle,
-                  onSelected: () {
-                    setState(() {
-                      _gender = 2;
-                    });
-                    calculateBMI(_gender, _height, _weight);
-                  },
-                  onUnSelected: () {},
-                  selected: _gender == 2,
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/woman.png",
-                        width: 50,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      const Text("Female")
-                    ],
+                  const SizedBox(
+                    width: 20,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Text("Enter your height (cm):"),
-            const SizedBox(height: 10),
-            TextField(
-              onChanged: (value) {
-                _height = double.parse(value);
-                calculateBMI(_gender, _height, _weight);
-              },
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 20),
-            Text("Enter your weight (kg):"),
-            const SizedBox(height: 10),
-            TextField(
-              onChanged: (value) {
-                _weight = double.parse(value);
-                calculateBMI(_gender, _height, _weight);
-              },
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 20),
-            Text("Your BMI: $_bmi"),
-            Text("Normal"),
-          ],
+                  ChoiceChip3D(
+                    border: Border.all(color: Colors.grey),
+                    style: _gender == 2 ? selectedStyle : unselectedStyle,
+                    onSelected: () {
+                      setState(() {
+                        _gender = 2;
+                      });
+                      calculateBMI(_gender, _height, _weight);
+                    },
+                    onUnSelected: () {},
+                    selected: _gender == 2,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          "assets/woman.png",
+                          width: 50,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text("Female")
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Text("Enter your height (cm):"),
+              const SizedBox(height: 10),
+              TextField(
+                onChanged: (value) {
+                  _height = double.parse(value);
+                  calculateBMI(_gender, _height, _weight);
+                },
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 20),
+              Text("Enter your weight (kg):"),
+              const SizedBox(height: 10),
+              TextField(
+                onChanged: (value) {
+                  _weight = double.parse(value);
+                  calculateBMI(_gender, _height, _weight);
+                },
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(height: 20),
+              Text("Your BMI: ${_bmi.toStringAsFixed(1)}"),
+              Text("Category: ${getBmiCategory(_bmi)}"),
+            ],
+          ),
         ),
       ),
     );

@@ -79,8 +79,9 @@ class _ForgotDetailState extends State<ForgotDetail> {
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  title: Text('CONFIRM'),
-                                  content: Text('Check your email!'),
+                                  title: Text('Reset Password'),
+                                  content: Text(
+                                      'Please check your email for update password'),
                                   actions: [
                                     ElevatedButton(
                                       onPressed: () {
@@ -90,6 +91,11 @@ class _ForgotDetailState extends State<ForgotDetail> {
                                                 builder: (_) => const Login()));
                                       },
                                       child: Text("OK"),
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Color(0xFF0CC0DF)),
+                                      ),
                                     )
                                   ],
                                 );
