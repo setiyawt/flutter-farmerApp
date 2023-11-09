@@ -198,7 +198,6 @@ class _LoginState extends State<Login> {
                                   ),
                                 );
                               } else {
-                                // Invalid username or password
                                 setState(() {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -211,7 +210,6 @@ class _LoginState extends State<Login> {
                             },
                             child: Container(
                                 height: 50,
-                                // padding: const EdgeInsets.all(40.0),
                                 decoration: const BoxDecoration(
                                   gradient: LinearGradient(
                                       colors: [
@@ -259,7 +257,7 @@ class _LoginState extends State<Login> {
                               );
                             },
                             child: Text(
-                              'Sign Up', // Ganti teks sesuai dengan yang Anda inginkan
+                              'Sign Up',
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Color(0xFF0CC0DF),

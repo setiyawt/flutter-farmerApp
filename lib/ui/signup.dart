@@ -192,7 +192,6 @@ class _RegistrationState extends State<Registration> {
                         },
                         child: Container(
                             height: 50,
-                            // padding: const EdgeInsets.all(40.0),
                             decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                   colors: [

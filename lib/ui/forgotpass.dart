@@ -100,12 +100,9 @@ class _ForgotDetailState extends State<ForgotDetail> {
                                   ],
                                 );
                               });
-                          // Navigator.pushReplacement(context,
-                          //     MaterialPageRoute(builder: (_) => const Login()));
                         },
                         child: Container(
                             height: 50,
-                            // padding: const EdgeInsets.all(40.0),
                             decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                   colors: [

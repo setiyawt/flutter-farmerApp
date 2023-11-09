@@ -63,6 +63,36 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding:
+                const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.question_answer_outlined,
+                  color: Color(0xFF2D3259),
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => faq()),
+                      );
+                    },
+                    child: Text(
+                      'FAQ',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF2D3259),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ))
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding:
                 const EdgeInsets.only(top: 5, bottom: 5, left: 15, right: 15),
             child: Row(
               children: [
@@ -80,36 +110,6 @@ class _ProfileState extends State<Profile> {
                     },
                     child: Text(
                       'Log out',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xFF2D3259),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ))
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.question_answer_outlined,
-                  color: Color(0xFF2D3259),
-                ),
-                TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => faq()),
-                      );
-                    },
-                    child: Text(
-                      'FAQ',
                       style: TextStyle(
                         fontSize: 14,
                         color: Color(0xFF2D3259),

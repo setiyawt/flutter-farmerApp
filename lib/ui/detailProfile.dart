@@ -66,7 +66,6 @@ class DetailProfile extends StatelessWidget {
                   color: Colors.grey,
                   width: 0.5,
                 )),
-                //color: Color.fromARGB(255, 62, 254, 171),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -94,7 +93,6 @@ class DetailProfile extends StatelessWidget {
                   color: Colors.grey,
                   width: 0.5,
                 )),
-                //color: Color.fromARGB(255, 62, 254, 171),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -149,7 +147,6 @@ class DetailProfile extends StatelessWidget {
                   color: Colors.grey,
                   width: 0.5,
                 )),
-                //color: Color.fromARGB(255, 62, 254, 171),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(

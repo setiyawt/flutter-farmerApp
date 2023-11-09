@@ -42,8 +42,7 @@ class _HomeState extends State<Home> {
       Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                "assets/home.png"), // Ganti dengan path gambar latar belakang Anda
+            image: AssetImage("assets/home.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -328,8 +327,7 @@ class _HomeState extends State<Home> {
                 height: 200,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.circular(
-                      10), // Atur border radius sesuai kebutuhan Anda
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 82, 81, 81).withOpacity(0.2),
@@ -376,9 +374,7 @@ class _HomeState extends State<Home> {
                                   color: Color(0xFF2D3259),
                                   size: 20,
                                 ),
-                                SizedBox(
-                                    width:
-                                        5), // Sesuaikan jarak horizontal antara ikon dan teks
+                                SizedBox(width: 5),
                                 Text(
                                   'Antapani, Bandung',
                                   style: TextStyle(
@@ -451,9 +447,7 @@ class _HomeState extends State<Home> {
                                   color: Color(0xFF2D3259),
                                   size: 20,
                                 ),
-                                SizedBox(
-                                    width:
-                                        5), // Sesuaikan jarak horizontal antara ikon dan teks
+                                SizedBox(width: 5),
                                 Text(
                                   'Kota Baru, Parahyangan',
                                   style: TextStyle(
@@ -478,8 +472,7 @@ class _HomeState extends State<Home> {
                 height: 200,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.circular(
-                      10), // Atur border radius sesuai kebutuhan Anda
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 82, 81, 81).withOpacity(0.2),

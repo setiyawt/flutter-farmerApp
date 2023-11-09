@@ -15,7 +15,6 @@ class GrafikTabState extends State<GrafikTab> {
   TextEditingController inputController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     listData = [
       const FlSpot(0, 20),
